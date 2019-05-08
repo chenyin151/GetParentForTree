@@ -98,7 +98,7 @@ getParent = ($selectKey) => {
 scanTree = ($item, $key, $index, $layer, $posIndx) => {
     console.log('layer', $layer)
     if (!$item.children) {
-        $layer -= 1;
+        // $layer -= 1;
         return false;
     }
     console.log('--------------有children-------------------');
