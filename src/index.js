@@ -65,6 +65,10 @@ var treeData =[
                     ]
                 }
             ]
+        },
+        {
+            title: '0-3',
+            key: '0-3'
         }
     ]
 
@@ -98,7 +102,7 @@ getParent = ($selectKey) => {
 scanTree = ($item, $key, $index, $layer, $posIndx) => {
     console.log('layer', $layer)
     if (!$item.children) {
-        // $layer -= 1;
+        $layer -= 1;
         return false;
     }
     console.log('--------------有children-------------------');
@@ -113,9 +117,13 @@ scanTree = ($item, $key, $index, $layer, $posIndx) => {
             console.log('深入到子节点')
             let layer = $layer + 1;
             let node = this.scanTree(item, $key, i, layer, $posIndx)
+            if (!node && $posIndx.length > 0) {
+                $posIndx.length -= 1;
+                $posIndx[$layer] = $index;
+            }
             if (node) return node;
         }
     }
 }
-let posIndx = getParent(['0-1-0-2-0'])
+let posIndx = getParent(['0-3']) //[0]
 console.log(posIndx)
